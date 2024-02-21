@@ -1,0 +1,7 @@
+bin
+.idea
+
+.env
+.python-version
+
+__pycache__
