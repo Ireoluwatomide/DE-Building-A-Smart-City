@@ -27,6 +27,6 @@ class WeatherData:
             'air_quality_index': random.uniform(0, 500)
         }
 
-        self.logger.info(weather_data)
+        # self.logger.info(weather_data)
 
         return weather_data

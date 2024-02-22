@@ -20,6 +20,6 @@ class GPSData:
             'vehicle_type': vehicle_type,
         }
 
-        self.logger.info(gps_data)
+        # self.logger.info(gps_data)
 
         return gps_data

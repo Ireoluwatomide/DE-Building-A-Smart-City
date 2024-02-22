@@ -41,7 +41,7 @@ class VehicleData:
         self.start_location['latitude'] += random.uniform(-0.0005, 0.0005)
         self.start_location['longitude'] += random.uniform(-0.0005, 0.0005)
 
-        self.logger.info(json.dumps(self.start_location))
+        # self.logger.info(json.dumps(self.start_location))
 
         return self.start_location
 
@@ -62,6 +62,6 @@ class VehicleData:
             'fuel_type': 'Hybrid',
         }
 
-        self.logger.info(vehicle_data)
+        # self.logger.info(vehicle_data)
 
         return vehicle_data
