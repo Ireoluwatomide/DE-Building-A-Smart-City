@@ -1,7 +1,9 @@
 bin
+logs
 .idea
+config
+
+__pycache__
 
 .env
 .python-version
-
-__pycache__
