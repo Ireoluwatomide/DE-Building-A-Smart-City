@@ -1,6 +1,5 @@
 import uuid
 import random
-import simplejson as json
 from datetime import datetime, timedelta
 
 from logger.logger import logs

@@ -10,7 +10,8 @@ class EmergencyIncidentData:
 
         self.logger = logs(__name__)
 
-    def get_emergency_incident_data(self, device_id, timestamp, location):
+    @staticmethod
+    def get_emergency_incident_data(device_id, timestamp, location):
 
         emergency_incident_data = {
             'id': uuid.uuid4(),

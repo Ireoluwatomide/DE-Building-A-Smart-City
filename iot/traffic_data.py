@@ -9,7 +9,8 @@ class TrafficData:
 
         self.logger = logs(__name__)
 
-    def generate_traffic_camera_data(self, device_id, timestamp, location, camera_id):
+    @staticmethod
+    def generate_traffic_camera_data(device_id, timestamp, location, camera_id):
 
         traffic_camera_data = {
             'id': uuid.uuid4(),

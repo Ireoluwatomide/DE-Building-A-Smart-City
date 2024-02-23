@@ -12,7 +12,8 @@ class WeatherData:
 
         self.logger = logs(__name__)
 
-    def get_weather_data(self, device_id, timestamp, location):
+    @staticmethod
+    def get_weather_data(device_id, timestamp, location):
 
         weather_data = {
             'id': uuid.uuid4(),

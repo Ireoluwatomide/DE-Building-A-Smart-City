@@ -9,7 +9,8 @@ class GPSData:
 
         self.logger = logs(__name__)
 
-    def generate_gps_data(self, device_id, timestamp, vehicle_type='private'):
+    @staticmethod
+    def generate_gps_data(device_id, timestamp, vehicle_type='private'):
 
         gps_data = {
             'id': uuid.uuid4(),
