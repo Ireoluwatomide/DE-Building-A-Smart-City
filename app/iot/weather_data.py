@@ -1,7 +1,7 @@
 import uuid
 import random
 
-from logger.logger import logs
+from app.logger.logger import logs
 
 random.seed(42)
 

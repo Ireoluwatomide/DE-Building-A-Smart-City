@@ -1,6 +1,6 @@
 import uuid
 import simplejson as json
-from logger.logger import logs
+from app.logger.logger import logs
 
 
 class Producer:
@@ -9,13 +9,15 @@ class Producer:
 
         self.logger = logs(__name__)
 
-    def json_serializer(self, obj):
+    @staticmethod
+    def json_serializer(obj):
 
         if isinstance(obj, uuid.UUID):
             return str(obj)
         raise TypeError(f'Object of type {obj.__class__.__name__} is not JSON serializable')
 
-    def delivery_report(self, err, msg):
+    @staticmethod
+    def delivery_report(err, msg):
 
         if err is not None:
             print(f'Message delivery failed: {err}')

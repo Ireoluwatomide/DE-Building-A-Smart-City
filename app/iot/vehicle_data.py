@@ -2,7 +2,7 @@ import uuid
 import random
 from datetime import datetime, timedelta
 
-from logger.logger import logs
+from app.logger.logger import logs
 
 
 class VehicleData:

@@ -1,6 +1,6 @@
 import uuid
 import random
-from logger.logger import logs
+from app.logger.logger import logs
 
 
 class GPSData:
