@@ -1,17 +1,16 @@
 import os
 import time
-
+import threading
 from confluent_kafka import SerializingProducer
 
-from iot.gps_data import GPSData
-from iot.vehicle_data import VehicleData
-from iot.traffic_data import TrafficData
-from iot.weather_data import WeatherData
-from iot.emergency_incident_data import EmergencyIncidentData
+from app.iot.gps_data import GPSData
+from app.iot.vehicle_data import VehicleData
+from app.iot.traffic_data import TrafficData
+from app.iot.weather_data import WeatherData
+from app.iot.emergency_incident_data import EmergencyIncidentData
 
-from kafka.producer import Producer
+from app.kafka.producer import Producer
 
-# device_id = 'vehicle-1'
 kafka_bootstrap_servers = os.getenv('KAFKA_BOOSTRAP_SERVERS', 'localhost:9092')
 
 gps_topic = os.getenv('GPS_TOPIC', 'gps_data')
@@ -57,7 +56,7 @@ class VehicleMovement:
             self.producer.produce_data_to_kafka(producer, traffic_topic, traffic_camera_data)
             self.producer.produce_data_to_kafka(producer, emergency_topic, emergency_incident_data)
 
-            time.sleep(1)
+            time.sleep(10)
 
     def produce_data_to_kafka(self):
 
@@ -75,10 +74,25 @@ class VehicleMovement:
             pass
         except Exception as e:
             print(f'An error occurred: {e}')
-        # finally:
-        #     producer.flush()
+
+    @staticmethod
+    def spark_submit():
+
+        os.system('./submit_spark.sh')
 
 
 if __name__ == "__main__":
     vehicle_movement = VehicleMovement()
-    vehicle_movement.produce_data_to_kafka()
+
+    # Create threads for running produce_data_to_kafka and spark_submit concurrently
+    kafka_thread = threading.Thread(target=vehicle_movement.produce_data_to_kafka)
+    spark_thread = threading.Thread(target=vehicle_movement.spark_submit)
+
+    # Start the threads
+    kafka_thread.start()
+    time.sleep(10)
+    spark_thread.start()
+
+    # Wait for both threads to finish
+    kafka_thread.join()
+    spark_thread.join()
